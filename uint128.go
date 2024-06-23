@@ -415,6 +415,12 @@ func (u Uint128) PutBytesBE(b []byte) {
 	binary.BigEndian.PutUint64(b[8:], u.Lo)
 }
 
+func (u Uint128) Bytes() [16]byte {
+	buf := [16]byte{}
+	u.PutBytes(buf[:])
+	return buf
+}
+
 // Big returns u as a *big.Int.
 func (u Uint128) Big() *big.Int {
 	i := new(big.Int).SetUint64(u.Hi)
